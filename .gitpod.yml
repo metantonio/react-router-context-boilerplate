@@ -12,10 +12,7 @@ ports:
 tasks:
   - before: nvm install 16.15.0
   - init: npm install
-  - command: >
-      cat .env.example >> .env &&
-      echo BACKEND_URL=$(gp url 3001) >> .env && 
-      npm run start
+
     openMode: split-right
 
 vscode:

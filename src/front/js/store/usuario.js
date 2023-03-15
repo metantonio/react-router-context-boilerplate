@@ -2,7 +2,8 @@ export const usuarioStore = {
     listaUsuarios: [],
     usuario: {
         msg: "I'm an object"
-    }
+    },
+    user: ""
 
 }
 
@@ -20,5 +21,9 @@ export function usuarioActions(getStore, getActions, setStore) {
 
             return store.usuario;
         },
+        userToDo: (nuevoUser) => { //esta función se encargará de cambiar el estado centralizado 'user'
+            const store = getStore()
+            setStore({ ...store, user: nuevoUser })
+        }
     }
 }
