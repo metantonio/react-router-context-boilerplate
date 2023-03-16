@@ -48,7 +48,7 @@ export const Home = () => {//Esta es la versión con estados dentro del componen
 			<input placeholder="agrear nueva tarea a la lista" onChange={(e) => { }}></input>
 			<br />
 			{todos && todos.length > 0 ? //Verifico el estado
-				<ul>{todos.map((item, index) => { //Hago un map del estado y muestro los to do si existen
+				<ol>{todos.map((item, index) => { //Hago un map del estado y muestro los to do si existen
 					return <li key={index}>
 						{item.label}
 						<button type="button"    //Agrego un botón para eliminar el todo
@@ -58,7 +58,7 @@ export const Home = () => {//Esta es la versión con estados dentro del componen
 							Eliminar
 						</button>
 					</li>
-				})}</ul>
+				})}</ol>
 				:
 				<>No hay tareas por hacer</>
 			}

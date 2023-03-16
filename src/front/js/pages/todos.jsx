@@ -13,15 +13,11 @@ export const ToDo = () => {//Esta es la versión con estados centralizados, la r
             actions.getToDoList()
         }
         cargaDatos()
-    }, [store.user]) //El componente se renderizará la primera vez y cada vez que el estado user o refresh cambien
+        let limpiar = document.querySelector("#tarea")
+        limpiar.value = ""
+    }, [store.user, refresh]) //El componente se renderizará la primera vez y cada vez que el estado user o refresh cambien
 
     useEffect(() => { console.log(store.todoList) }, [store.todoList])
-    useEffect(() => {
-        const cargaDatos = async () => {
-            actions.getToDoList()
-        }
-        cargaDatos()
-    }, [refresh])
 
     return (
         <div className="text-center mt-5">
@@ -29,13 +25,15 @@ export const ToDo = () => {//Esta es la versión con estados centralizados, la r
             <br />
             <input placeholder="username" onChange={(e) => { actions.userToDo(e.target.value) }}></input>
             <br></br>
-            <input placeholder="agrear nueva tarea a la lista"
+            <input placeholder="agrear nueva tarea a la lista" id="tarea"
                 onKeyUp={async (e) => {
-                    if (e.keyCode == "13") {
+                    if (e.key == "Enter") {
                         console.log("tarea", e.target.value)
                         let resultado = await actions.agregarToDo(e.target.value)
-                        setRefresh(!refresh)
-                        e.target.value = "" //restauro el valor a vacío
+                        if (resultado) {
+                            setRefresh(!refresh)
+                            e.target.value = "" //restauro el valor a vacío
+                        }
                     }
                 }}>
             </input>
