@@ -20,7 +20,7 @@ const SinglePeople = () => {
     }, [])
 
     return (<>
-        Soy {people.name ? people.name : ""} con el uid {params.uid}
+        Soy {people.name ? people.name : ""} con el uid {params.uid} y mi género es {people?.gender}
     </>)
 }
 

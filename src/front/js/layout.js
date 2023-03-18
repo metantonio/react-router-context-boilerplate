@@ -6,7 +6,7 @@ import { Home } from "./pages/home";
 import { ToDo } from "./pages/todos.jsx";
 
 import StarWars from "./pages/starWars.jsx";
-import SinglePeople from "./component/singlePeople.jsx";
+import SinglePeople from "./pages/singlePeople.jsx";
 
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";

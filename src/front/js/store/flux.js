@@ -61,6 +61,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return { respuestaJson, response }
 
 			},
+			useFetchParalelo: (endpoint, body, method = "GET") => {
+				let url = process.env.BACKEND_URL + endpoint
+				console.log(url)
+				let response = fetch(url, {
+					method: method,
+					headers: { "Content-Type": "application/json" },
+					body: body ? JSON.stringify(body) : null
+				})
+
+				return response;
+			},
 		}
 	};
 };
