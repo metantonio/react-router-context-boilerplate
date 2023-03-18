@@ -18,3 +18,19 @@ export const Navbar = () => {
 		</nav>
 	);
 };
+
+
+/*
+
+[{},{},{
+	label:"",
+	done:false
+} ] 
+
+[{},{},{
+	name:"",
+	uid:1,
+	categoy:"people"
+} ] 
+
+*/
