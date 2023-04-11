@@ -3,21 +3,44 @@ export const usuarioStore = {
     usuario: {
         msg: "I'm an object"
     },
-    user: ""
+    user: "",
+    userLogin: false
 
 }
 
 export function usuarioActions(getStore, getActions, setStore) {
     return {
-        login: async () => {
+        login: async (email, password) => {
             const store = getStore()
-            console.log("Es la encargada de hacer login del usuario")
+            const actions = getActions()
+            console.log("Es la encargada de hacer login del usuario", email, password)
+            let obj = {
+                email: email,
+                password: password
+            }
 
-            setStore({
+            let { respuestaJson, response } = await actions.useFetch("/login", obj, "POST")
+            console.log(response.ok)
+            console.log(respuestaJson)
+            if (response.ok) {
+                localStorage.setItem("token", respuestaJson.token)
+                sessionStorage.setItem("token", respuestaJson.token)
+                let token = localStorage.getItem("token")
+                setStore({ ...store, userLogin: true })
+                //console.log("token", token)
+            } else {
+                console.log("login fallido")
+                localStorage.setItem("token", "")
+                sessionStorage.setItem("token", "")
+                setStore({ ...store, userLogin: false })
+            }
+
+
+            /* setStore({
                 ...store, usuario: {
                     msg: "Usuario logueado"
                 }
-            })
+            }) */
 
             return store.usuario;
         },
